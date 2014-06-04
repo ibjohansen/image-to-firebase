@@ -1,1 +1,1 @@
-<?php require (__DIR__)."/default.html";
+<?php require (__DIR__)."/app/default.html";
