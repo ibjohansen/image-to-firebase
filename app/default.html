@@ -1,42 +1,58 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
     <meta charset="utf-8">
-    <title>Image capture and storing</title>
+    <title>Bildefangst med getUserMedia og canvas</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content=""/>
-    <meta name="copyright" content="Inmeta Consulting AS - 2014"/>
+    <meta name="copyright" content="Ib Johansen - 2014"/>
 
+    <!-- bootstrap -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="css/app.css">
-    <script src="js/vendor/jquery-2.1.1.min.js"></script>
-    <link href="css/metagrid.css" rel="stylesheet">
+    <!-- app-spesifikk css -->
+    <link rel="stylesheet" href="/app/css/app.css">
 
-    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
-    <link rel="stylesheet" type="text/css" href="css/component.css"/>
-
+    <!-- jQuery -->
+    <script src="/app/js/vendor/jquery-2.1.1.min.js"></script>
 </head>
 
 <body>
 
-<!--content-->
+<!-- content -->
 <div id="content">
-    <div class="container-fluid">
-        something here
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <!-- video-element & photo-knapp -->
+                <video autoplay="true" id="webcam-video" class="video-elm"></video>
+                <button id="webcam-photo" type="button" class="capture-image-elm btn btn-default btn-small">
+                    <span class="glyphicon glyphicon-camera"></span> Ta bilde
+                </button>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+
+                <!-- canvas som vi skal tegne bildet på -->
+                <canvas id="snapshot-canvas" class="canvas-elm"></canvas>
+
+            </div>
+        </div>
     </div>
 </div>
 
-<!--scripts-->
-<script src="js/vendor/jquery-ui.min.js"></script>
-<script src="js/vendor/metagrid.js"></script>
-<script src='js/vendor/firebase.js'></script>
-<script src="js/vendor/threadpool.min.js"></script>
-<script src="js/app.js"></script>
+<!-- script -->
+<script src="/app/js/vendor/jquery-ui.min.js"></script>
+<script src="/app/js/app.js"></script>
 
 </body>
+
 </html>
