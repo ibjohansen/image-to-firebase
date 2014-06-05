@@ -18,7 +18,7 @@ var app = {
         var videoElm = $('#webcam-video')[0];
         var canvas = $('#snapshot-canvas')[0];
         var img = $('#snapshot-img')[0];
-        //sett opp en kontekst-objekt med metoder for å tegne på canvas
+        //sett opp et kontekst-objekt med metoder for å tegne på canvas
         var ctx = canvas.getContext('2d');
         var localMediaStream = null;
 
@@ -33,14 +33,13 @@ var app = {
             snapshot();
         });
 
-        //deklarer en variabel til å holde getUserMedia med browser-.spesifikke prefikser
+        //deklarer en variabel til å holde getUserMedia med browser-spesifikke prefikser
         navigator.getUserMedia = navigator.getUserMedia
             || navigator.webkitGetUserMedia
             || navigator.mozGetUserMedia
             || navigator.msGetUserMedia
             || navigator.oGetUserMedia;
 
-        //then if we have access to the method init the method, with video only
         //initier metoden, spesifiser at vi kun skal ha video,
         //og i dette tilfellet lav-kvalitetsvideo på 320*240 pixler
         //sett opp suksess- og feilhåndtering-callbacks
