@@ -4,14 +4,21 @@
 $(document).ready(function () {
 
     app.initVideo();
+    $('#get-firebase-btn').click(function () {
+        app.initFirebaseListener();
+    })
 });
+
+var config = {
+    //deklarer (og åpne) en kobling til firebase
+    baseref: new Firebase('https://cam-to-firebase-demo.firebaseio.com/')
+};
 
 
 var app = {
 
     /**
-     * capture the video stream from the web cam and stream it to the video element on the web page
-     * fang video fra web-kameraet, og strøm til video-elementet
+     * fang video fra web-kameraet, og strøm til video-elementet HTML-siden
      */
     initVideo: function () {
         //hent det første elementet som returneres av jQuery!
@@ -69,7 +76,34 @@ var app = {
          */
         function snapshot() {
             if (localMediaStream) {
-                ctx.drawImage(videoElm, 0, 0);
+
+                var metaTitle = $('#meta-title').val();
+                var metaForm = $('#meta-data');
+                metaForm.addClass('has-success');
+
+                //sjekk at det er en bildetittel på bildet
+                if (null != metaTitle && undefined != metaTitle && '' != metaTitle) {
+                    //tegn bildet på canvas
+                    ctx.drawImage(videoElm, 0, 0);
+
+                    //populer img-elementets src-atributt med base64 enkodet versjon av bildet
+                    var b64representation = canvas.toDataURL('image/png');
+                    img.src = b64representation;
+
+                    //lagre bildet til Firebase
+                    //Opprett et JSON-objekt som holder tittel og bilde
+                    var objToFirebase = {
+                        title: metaTitle,
+                        img: b64representation
+                    };
+                    //push objektet til Firebase
+                    var imgRef = config.baseref.push(objToFirebase)
+
+                } else {
+                    //Sett på feil-klasse på meta-data feltet
+                    metaForm.addClass('has-error');
+                }
+
             }
         }
 
@@ -89,6 +123,40 @@ var app = {
         function processVideoError(e) {
             // noe smart feilhåndtering
         }
+    },
+    /**
+     * funksjon som initierer en listner mot firebase, og viser bildene på siden
+     */
+    initFirebaseListener: function () {
+        //skru på en ajax-loader for i gi bruker beskjed om at noe skjer
+        $('#spinner').show();
+
+        //husk at all lesing fra og skriving til Firebase skjer asynkront, så alt du skal gjøre med
+        //data og eventuelle returer fra oppdateringskall må skje i callbacks
+
+        //Vi lager en tom array som skal holde bildene våre,
+        //ettersom Firebase returnerer objekter og det er litt greiere å
+        //gjøre vanlige liste operasjoner på en array
+        var images = [];
+        var imageList = $('#img-list');
+
+
+        //lage en live kobling mot "child_added" eventet, dette fanger opp når det blir lagt til en ny node
+        //og kjøres også første gang du gjør et kall
+        //metoden returnerer et snapshot, som man kan kalle val() på og
+        // dette returnerer data fra firebase som et JSON-objekt
+        config.baseref.on('child_added', function (snapshot, prevChild) {
+
+            var fbImg = snapshot.val();
+            images.push(fbImg);
+            var imgTag = $('#templates').find('.img-container').clone();
+
+            imgTag.find('.img-image').attr('src', fbImg.img);
+            imgTag.find('.img-meta-data').text(fbImg.title);
+            $('#spinner').hide();
+            imageList.append(imgTag);
+
+        });
     }
 };
 

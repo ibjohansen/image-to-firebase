@@ -27,3 +27,49 @@ ta bilde-knapp
 .capture-image-elm {
     display: block;
 }
+
+/*
+skjult DIV for HTML templates
+*/
+#templates {
+    display: none;
+}
+
+/*
+Bildevisning
+container
+*/
+.img-container {
+    width: 100%;
+}
+
+/*
+Bildevisning
+ramme
+*/
+.img-frame {
+}
+
+/*
+Bildevisning
+bilde
+*/
+.img-image {
+}
+
+/*
+Bildevisning
+meta-data
+*/
+.img-meta-data {
+}
+
+/*
+ajax-loader
+*/
+#spinner{
+    position: relative;
+    left:50%   ;
+    right:auto;
+    top:250px;
+}
