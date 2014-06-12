@@ -24,9 +24,22 @@
 
 <body>
 
+<div id="logo">
+    <a href="http://www.inmeta.no" target="_blank"><img src="/app/img/logo_inmeta.svg" alt="Inmeta Consulting AS"/></a>
+</div>
+
 <!-- content -->
 <div id="content">
+
+    <div class="content-overlay"></div>
     <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div id="user-name">Brukernavn:</div>
+            </div>
+        </div>
+
         <div class="row">
 
             <!--venstre kolonne-->
@@ -62,15 +75,17 @@
 
             <div class="col-lg-6 col-md-6">
 
-                <h3>Bilder hentet fra Firebase</h3>
+                <button id="get-firebase-btn" type="button" class="capture-image-elm btn btn-default btn-small">
+                    <span class="glyphicon glyphicon-fire"></span> Koble opp Firebase
+                </button>
+                <h3 id="r-col-title">Bilder hentet fra Firebase</h3>
+
                 <br/>
 
-                <button id="get-firebase-btn" type="button" class="capture-image-elm btn btn-default btn-small">
-                    <span class="glyphicon glyphicon-fire"></span> Hent bilder
-                </button>
+                <img id="spinner" src="/app/img/ajax-loader.gif" style="display: none">
 
                 <div id="img-list">
-                    <img id="spinner" src="/app/img/ajax-loader.gif" style="display: none">
+
                 </div>
             </div>
 
@@ -78,6 +93,7 @@
 
     </div>
 </div>
+
 
 <!-- script -->
 <script src="/app/js/vendor/jquery-ui.min.js"></script>
@@ -90,11 +106,18 @@
     <div class="img-container">
         <div class="img-frame">
             <img class="img-image" src="">
+
             <div class="img-meta-data"></div>
         </div>
     </div>
 
 </div>
+
+<div class="clear"></div>
+
+<footer>
+    <a href="http://www.inmeta.no" target="_blank">&copy; Copyright 2014 Ib Johansen, Inmeta Consulting AS</a>
+</footer>
 
 </body>
 

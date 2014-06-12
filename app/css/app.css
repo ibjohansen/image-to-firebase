@@ -8,68 +8,243 @@ body, html {
 }
 
 /*
-video-element
+    logo-element
+*/
+#logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+/*
+    img-element
+    svg-fil, begrens str
+*/
+#logo img {
+    width: 200px;
+}
+
+/*
+  delvis transparant overlay for å vise bruker at det ikke
+  skjer noe på siden før man tillater bruk av web-cam
+  denne fjernes i funksjonen processVideoStream
+*/
+.content-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.8); /*dim the background*/
+}
+
+#content {
+    position: relative;
+    top: 90px;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 30px;
+    width: 100%;
+    background-color: inherit;
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    color: #999;
+    font-size: 0.8em;
+    text-shadow: 0 1px 1px #fff;
+}
+
+footer a {
+    color: #999;
+}
+
+/*
+    video-element
 */
 .video-elm {
     margin: 10px;
+    width: 320px;
+    height: 240px;
 }
 
 /*
-canvas-element
+    canvas-element
 */
 .canvas-elm {
     margin: 10px;
+    width: 320px;
+    height: 240px;
 }
 
 /*
-ta bilde-knapp
+    tittel-element (input)
+*/
+#meta-title {
+    width: 330px;
+}
+
+/*
+    ta bilde-knapp
 */
 .capture-image-elm {
     display: block;
 }
 
 /*
-skjult DIV for HTML templates
+    skjult DIV for HTML templates
 */
 #templates {
     display: none;
 }
 
 /*
-Bildevisning
-container
+    Bildevisning
+    container
 */
 .img-container {
     width: 100%;
 }
 
 /*
-Bildevisning
-ramme
+}
+    Bildevisning
+    ramme
 */
 .img-frame {
+    position: relative;
+    background-color: #f2f2f2;
+    border: 1px solid grey;
+    height: 270px;
+    width: 340px;
+    margin-bottom: 5px;
+
+    /*
+    overganger & animasjon
+    animasjon, snurr blidet en gang i løpet av et halvt sekund med ease-in-out (sakte start og slutt)
+    ettersom getUserMedia/Stream API i skrivende stund bare støttes av Chrome, Firefox og Opera
+    tar jeg bare hensyn til disse når det gjelder animasjon og transform
+    */
+    /*-webkit for Chrome, Safari */
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 500ms;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in-out;
+
+    /*-moz for Firefox */
+    -moz-animation-name: spin;
+    -moz-animation-duration: 500ms;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: ease-in-out;
+
+    /*-o for Opera*/
+    -o-animation-name: spin;
+    -o-animation-duration: 500ms;
+    -o-animation-iteration-count: 1;
+    -o-animation-timing-function: ease-in-out;
+
+    animation-name: spin;
+    animation-duration: 500ms;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
 }
 
 /*
-Bildevisning
-bilde
+    keyframes for animasjonen, roter 360 grader
+    og skalerer fra 0 til 100% i løpet av animasjonen
+*/
+/*-webkit for Chrome, Safari */
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg) scale(0);
+    }
+    to {
+        -webkit-transform: rotate(360deg) scale(1);
+    }
+}
+
+/*-moz for Firefox */
+@-moz-keyframes spin {
+    from {
+        -moz-transform: rotate(0deg) scale(0);
+    }
+    to {
+        -moz-transform: rotate(360deg) scale(1);
+    }
+}
+
+/*-o for Opera*/
+@-o-keyframes spin {
+    from {
+        -o-transform: rotate(0deg) scale(0);
+    }
+    to {
+        -o-transform: rotate(360deg) scale(1);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg) scale(0);
+    }
+    to {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+/*
+    Bildevisning
+    bilde i utgangspunkt
 */
 .img-image {
+    position: absolute;
+    top: 20px;
+    left: 10px;
 }
 
 /*
-Bildevisning
-meta-data
+    Bildevisning
+    meta-data
 */
 .img-meta-data {
+    text-align: center;
 }
 
 /*
-ajax-loader
+    ajax-loader
 */
-#spinner{
+#spinner {
     position: relative;
-    left:50%   ;
-    right:auto;
-    top:250px;
+    left: 50%;
+    right: auto;
+    top: 250px;
 }
+
+/*
+    Brukernavn
+*/
+#user-name {
+    position: relative;
+    top: 5px;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+/*
+    Knappen som henter fra Firebase skal bare vises når det er bilder å vise
+*/
+#get-firebase-btn {
+    display: none;
+}
+
+/*
+    Når vi har opprettet en kobling mot Firebase trengs ikke knappen med og vi viser en overskrift i stedet
+*/
+#r-col-title {
+    display: none;
+}
+
