@@ -209,6 +209,8 @@ var app = {
         //bytt ut bilde og metadata på DOM-noden som korresponderer med det slettede bildet
         //med noe som forteller bruker at bildet er slettet.
         config.baseref.child(config.username).on('child_removed', function (oldChildSnapshot) {
+            //fjern transparent overlay
+            $('.content-overlay').remove();
             var imgTag = $('#' + oldChildSnapshot.name());
             imgTag.find('.img-image').attr('src', '/app/img/logo_inbeta.png');
             imgTag.find('.img-meta-data').text('Bildet er automatisk slettet fra databasen');
