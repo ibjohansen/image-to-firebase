@@ -269,8 +269,9 @@ var app = {
         var col = $('<div class="col-lg-12 col-md-12">');
         var inbetaLogo = $('<img src="/app/img/logo_inbeta.png">');
         var txtDiv = $('<div>');
-        txtDiv.html('<h1>Beklager, funksjonen getUserMedia() støttes ikke av din nettleser og dermed faller grunnalget for denne applikasjonen bort</h1>');
+        txtDiv.html('<h1>Beklager, funksjonen getUserMedia() støttes ikke av din nettleser og dermed faller grunnlaget for denne applikasjonen bort</h1>');
         txtDiv.append('<h2><a href="http://caniuse.com/stream">Sjekk om browseren din støtter nødvendig funksjonalitet her</a></h2>');
+        txtDiv.append('<br><hr>');
         col
             .append(inbetaLogo)
             .append(txtDiv);
