@@ -56,9 +56,15 @@
                            placeholder="Skriv inn en tittel på bildet">
                 </div>
 
+                <div class="btn-group">
                 <button id="webcam-photo" type="button" class="capture-image-elm btn btn-default btn-small">
                     <span class="glyphicon glyphicon-camera"></span> Ta bilde
                 </button>
+
+                <button id="get-firebase-btn" type="button" class="capture-image-elm btn btn-default btn-small">
+                    <span class="glyphicon glyphicon-fire"></span> Koble opp Firebase
+                </button>
+                </div>
 
                 <!-- canvas som vi skal tegne bildet på -->
                 <h3>canvas-element som funksjonen snapshot() tegner bildet på</h3>
@@ -75,10 +81,8 @@
 
             <div class="col-lg-6 col-md-6">
 
-                <button id="get-firebase-btn" type="button" class="capture-image-elm btn btn-default btn-small">
-                    <span class="glyphicon glyphicon-fire"></span> Koble opp Firebase
-                </button>
-                <h3 id="r-col-title">Bilder hentet fra Firebase</h3>
+
+                <h3>Bilder hentet fra Firebase</h3>
 
                 <br/>
 

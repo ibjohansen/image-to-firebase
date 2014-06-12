@@ -240,11 +240,3 @@ footer a {
 #get-firebase-btn {
     display: none;
 }
-
-/*
-    Når vi har opprettet en kobling mot Firebase trengs ikke knappen med og vi viser en overskrift i stedet
-*/
-#r-col-title {
-    display: none;
-}
-
